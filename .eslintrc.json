@@ -14,7 +14,7 @@
     },
     "rules": {
       "no-irregular-whitespace": 2,
-      "no-var": 0, // 禁用var，用let和const代替
+      "no-var": "error", // 禁用var，用let和const代替
       "key-spacing": [2, { "beforeColon": false, "afterColon": true }],
         "indent": [
             "error",

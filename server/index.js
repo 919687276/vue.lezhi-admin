@@ -5,9 +5,10 @@ const bodyParser = require('body-parser'); // post 数据是需要
 const express = require('express');
 const app = express();
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({
-  extended: false
+  limit: '50mb',
+  extended: true,
 }));
 app.all('*',function(req,res,next){
   //设置允许跨域的域名，*代表允许任意域名跨域
@@ -25,6 +26,8 @@ app.all('*',function(req,res,next){
 //后端api路由
 // app.use('/api', routerApi);
 app.use('/Home/methods', require('./Home/router'));
+app.use('/Register/methods', require('./Register/router'));
+app.use('/Common/methods', require('./Common/router'));
 
 // 监听端口
 app.listen(3000);

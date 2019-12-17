@@ -13,15 +13,15 @@ const pool = mysql.createPool({
 
 module.exports = {
   login(req, res) {
-    var phone = req.body.phone;
-    var password = req.body.password;
+    const phone = req.body.phone;
+    const password = req.body.password;
     pool.getConnection((err, connection) => {
-      var sql = sqlMap.login;
+      const sql = sqlMap.login;
       connection.query(sql,[phone,password], (err, result) => {
         if(result.length>0){
           const responseData = {
-            'nickname': result[0].nickname,
-            'userimg': result[0].userimg,
+            'nickname': result[0].user_nickname,
+            'userimg': result[0].user_userimg,
             'isExist': true,
           };
           res.json(responseData);
@@ -72,12 +72,10 @@ module.exports = {
       const sql1 = sqlMap.HotResourcesOne;
       const sql2 = sqlMap.HotResourcesTwo;
       connection.query(sql1, (err1, result1) => {
-      
         if(err1){
           throw err;
         }else{
           connection.query(sql2, (err2, result2) => {
-            console.log(result2);
             if(err2){
               throw err;
             }else{
