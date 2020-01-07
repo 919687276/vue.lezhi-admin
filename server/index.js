@@ -24,11 +24,11 @@ app.all('*',function(req,res,next){
 });
 
 //后端api路由
-// app.use('/api', routerApi);
 app.use('/Home/methods', require('./Home/router'));
 app.use('/Register/methods', require('./Register/router'));
 app.use('/Common/methods', require('./Common/router'));
-
+app.use('/SelectedQuestions/methods', require('./SelectedQuestions/router'));
+app.use('/SelectedVideo/methods', require('./SelectedVideo/router'));
 // 监听端口
 app.listen(3000);
 console.log('server begin listening————port:3000......');

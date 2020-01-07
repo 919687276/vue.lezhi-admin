@@ -24,12 +24,12 @@ module.exports = {
             'userimg': result[0].user_userimg,
             'isExist': true,
           };
-          res.json(responseData);
+          res.json(encodeURIComponent((JSON.stringify(responseData))));
         }else{
           const responseData = {
             'isExist': false,
           };
-          res.json(responseData);
+          res.json(encodeURIComponent((JSON.stringify(responseData))));
         }
         connection.release();
       });
@@ -59,7 +59,7 @@ module.exports = {
                   'data': result2,
                 }
               ];
-              res.json(objData);
+              res.json(encodeURIComponent((JSON.stringify(objData))));
             }
           });
         }
@@ -91,7 +91,7 @@ module.exports = {
                   'data': result2,
                 }
               ];
-              res.json(objData);
+              res.json(encodeURIComponent((JSON.stringify(objData))));
             }
           });
         }

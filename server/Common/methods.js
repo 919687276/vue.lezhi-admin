@@ -26,14 +26,14 @@ module.exports = {
         'status': 1,
         'content': result,
       };
-      res.json(responseData);
+      res.json(encodeURIComponent((JSON.stringify(responseData))));
     }, (ex) => {
       const responseData = {
         'status': 0,
         'content': ex,
         'message': ex.data.Message,
       };
-      res.json(responseData);
+      res.json(encodeURIComponent((JSON.stringify(responseData))));
     });
   }
 };

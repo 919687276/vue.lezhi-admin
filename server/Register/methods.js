@@ -27,7 +27,7 @@ module.exports = {
           'isregister': false,
           'message': err,
         };
-        res.json(responseData);
+        res.json(encodeURIComponent((JSON.stringify(responseData))));
       }else{
         pool.getConnection((err, connection) => {
           const sql = sqlMap.saveUser;
@@ -44,12 +44,12 @@ module.exports = {
                 'isregister': false,
                 'message': err,
               };
-              res.json(responseData);
+              res.json(encodeURIComponent((JSON.stringify(responseData))));
             }else{
               let responseData = {
                 'isregister': true,
               };
-              res.json(responseData);
+              res.json(encodeURIComponent((JSON.stringify(responseData))));
             }
             connection.release();
           });
@@ -69,12 +69,12 @@ module.exports = {
             let responseData = {
               'isExist': true,
             };
-            res.json(responseData);
+            res.json(encodeURIComponent((JSON.stringify(responseData))));
           }else{
             const responseData = {
               'isExist': false,
             };
-            res.json(responseData);
+            res.json(encodeURIComponent((JSON.stringify(responseData))));
           }
         }
         connection.release();
@@ -94,12 +94,12 @@ module.exports = {
             let responseData = {
               'status': false,
             };
-            res.json(responseData);
+            res.json(encodeURIComponent((JSON.stringify(responseData))));
           }else{
             let responseData = {
               'status': true,
             };
-            res.json(responseData);
+            res.json(encodeURIComponent((JSON.stringify(responseData))));
           }
         }
         connection.release();
@@ -107,7 +107,6 @@ module.exports = {
     });
   },
   updateUserPwd(req,res){
-    console.log('true');
     const phone = req.body.phone;
     const password = req.body.password;
     pool.getConnection((err, connection) => {
@@ -118,12 +117,12 @@ module.exports = {
             'status': false,
             'message': err,
           };
-          res.json(responseData);
+          res.json(encodeURIComponent((JSON.stringify(responseData))));
         }else{
           let responseData = {
             'status': true,
           };
-          res.json(responseData);
+          res.json(encodeURIComponent((JSON.stringify(responseData))));
         }
         connection.release();
       });
