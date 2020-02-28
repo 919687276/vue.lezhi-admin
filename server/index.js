@@ -29,6 +29,7 @@ app.use('/Register/methods', require('./Register/router'));
 app.use('/Common/methods', require('./Common/router'));
 app.use('/SelectedQuestions/methods', require('./SelectedQuestions/router'));
 app.use('/SelectedVideo/methods', require('./SelectedVideo/router'));
+app.use('/About/methods', require('./About/router'));
 // 监听端口
 app.listen(3000);
 console.log('server begin listening————port:3000......');

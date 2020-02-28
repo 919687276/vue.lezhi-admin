@@ -5,4 +5,7 @@ const api = require('./methods');
 router.post('/sendCode', (req, res, next) => {
   api.sendCode(req, res, next);
 });
+router.post('/MapServ', (req, res, next) => {
+  api.MapServ(req, res, next);
+});
 module.exports = router;

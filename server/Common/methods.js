@@ -1,4 +1,16 @@
 const Core = require('@alicloud/pop-core');
+const mysql = require('mysql');
+const dbConfig = require('../db'); // 数据库配置
+// const sqlMap = require('./sqlMap'); // sql语句
+
+const pool = mysql.createPool({
+  host: dbConfig.mysql.host,
+  user: dbConfig.mysql.user,
+  password: dbConfig.mysql.password,
+  database: dbConfig.mysql.database,
+  port: dbConfig.mysql.port,
+  multipleStatements: true // 支持多语句查询
+});
 module.exports = {
   sendCode(req, res){
     
@@ -34,6 +46,24 @@ module.exports = {
         'message': ex.data.Message,
       };
       res.json(encodeURIComponent((JSON.stringify(responseData))));
+    });
+  },
+  MapServ(req, res){
+    pool.getConnection((err, connection) => {
+      const sql = 'select * from city where 1=1';
+      connection.query(sql, (err, result) => {
+        if(err){
+          console.log(err);
+          result.send(err);
+        }else{
+          let responseData = {
+            columns: ['city', 'num'],
+            rows: result,
+          };
+          res.json(encodeURIComponent((JSON.stringify(responseData))));
+        }
+        connection.release();
+      });
     });
   }
 };
