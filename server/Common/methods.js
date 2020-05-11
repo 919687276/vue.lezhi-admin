@@ -50,7 +50,7 @@ module.exports = {
   },
   MapServ(req, res){
     pool.getConnection((err, connection) => {
-      const sql = 'select * from city where 1=1';
+      const sql = 'select * from lz_city where 1=1';
       connection.query(sql, (err, result) => {
         if(err){
           console.log(err);
